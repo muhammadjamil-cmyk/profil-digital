@@ -10,7 +10,7 @@
     
     <style>
         :root {
-            --bg-color: #080b12; /* Lebih gelap untuk kontras grafis cahaya */
+            --bg-color: #080b12; 
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -31,75 +31,69 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            /* Efek Kedalaman Perspektif untuk 3D Tilt */
             perspective: 1200px; 
             position: relative;
             overflow: hidden;
         }
 
-        /* ----------------------------------------------------------- */
-        /* [GRAFIS AESTHETIC] - Awan Cahaya Atmosfer Latar Belakang    */
-        /* ----------------------------------------------------------- */
+        /* Grafis Awan Cahaya Latar Belakang */
         .bg-graphic {
             position: absolute;
             width: 100%; height: 100%;
             top: 0; left: 0;
             pointer-events: none;
-            z-index: 1; /* Paling belakang */
+            z-index: 1; 
         }
 
-        /* Awan Cahaya 1 (Kiri Atas - Teal/Biru) */
         .bg-graphic::before {
             content: "";
             position: absolute;
             width: 300px; height: 300px;
             top: -100px; left: -100px;
-            background-color: #06b6d4; /* Teal */
-            filter: blur(120px); /* Membuatnya buram lembut */
-            opacity: 0.15; /* Sangat tipis */
+            background-color: #06b6d4; 
+            filter: blur(120px); 
+            opacity: 0.15; 
         }
 
-        /* Awan Cahaya 2 (Kanan Bawah - Ungu/Pink) */
         .bg-graphic::after {
             content: "";
             position: absolute;
             width: 350px; height: 350px;
             bottom: -150px; right: -100px;
-            background-color: #8b5cf6; /* Ungu */
-            filter: blur(140px); /* Membuatnya buram lembut */
-            opacity: 0.18; /* Sangat tipis */
+            background-color: #8b5cf6; 
+            filter: blur(140px); 
+            opacity: 0.18; 
         }
 
-        /* [GRAFIS AESTHETIC] - Lapisan Tekstur Film Grain Halus */
+        /* Tekstur Film Grain */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEV0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWTr54g1AAAAGnRSTlMALv8A/v7/AP8A/wD+/v7+AP8A/gD+/v7+AP8A8mD2MwAAAClJREFUeNpjYGRkZGJmYWVjZ2dkYmZhpWJkYmZhpWJmYWVjZ2NkYmYAABMAAmf8WNoAAAAASUVORK5CYII=');
-            opacity: 0.03; /* Lebih halus */
+            opacity: 0.03; 
             pointer-events: none;
-            z-index: 2; /* Di atas awan cahaya */
+            z-index: 2; 
         }
 
-        /* Kartu Profil Utama */
+        /* Kartu Utama */
         .profile-card {
             width: 100%;
             max-width: 380px;
             background: var(--card-bg);
-            border-radius: 28px; /* Lebih membulat modern */
+            border-radius: 28px; 
             padding: 32px 24px;
             text-align: center;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            z-index: 3; /* Di atas grafis latar */
+            z-index: 3; 
             position: relative;
-            /* Penting untuk performa animasi miring */
             transform-style: preserve-3d;
             will-change: transform;
-            transition: transform 0.1s ease-out; /* Transisi halus saat jari dilepas */
+            transition: transform 0.1s ease-out; 
         }
 
-        /* Bagian Avatar Sinematik */
+        /* Avatar */
         .avatar {
             width: 100px;
             height: 100px;
@@ -118,7 +112,6 @@
             border: 2px solid rgba(255,255,255,0.05);
         }
         
-        /* Lapisan Overlay Sinematik tipis di atas Avatar */
         .avatar::after {
             content: "";
             position: absolute;
@@ -140,9 +133,10 @@
             font-weight: 500;
             letter-spacing: 0.02em;
             margin-bottom: 24px;
-            font-style: italic; /* Menambah kesan artistik */
+            font-style: italic; 
         }
 
+        /* Tombol Tautan */
         .links-container {
             display: flex;
             flex-direction: column;
@@ -166,7 +160,6 @@
             overflow: hidden;
         }
         
-        /* Efek Kilatan Halus saat Tombol di-hover (untuk desktop) */
         .link-btn::after {
             content: "";
             position: absolute;
@@ -194,7 +187,7 @@
             filter: brightness(1.1);
         }
 
-        /* Warna Khusus Merek (Brand Colors) */
+        /* Warna Merek */
         .btn-wa { background: #25D366; }
         .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
         .btn-tiktok { background: #000000; border: 1px solid rgba(255,255,255,0.1); }
@@ -215,7 +208,7 @@
         <p class="headline">UI/UX Designer & Developer</p>
 
         <iframe style="border-radius:16px; margin-bottom: 24px; box-shadow: 0 0 15px rgba(29, 185, 84, 0.15);" 
-                src="Https://open.spotify.com/playlist/11Et5exhhN9awIOCPsrgef?si=5_CFpYJ5TOSl-tSOYH0S6Q&pi=awVHPnWHTsqls" 
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" 
                 width="100%" height="152" frameBorder="0" allowfullscreen="" 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
         </iframe>
@@ -232,51 +225,4 @@
             </a>
             
             <a href="https://www.instagram.com/jqm1l_?igsh=MXB5em9jN3JjMHFnaQ%3D%3D&utm_source=qr" class="link-btn btn-ig" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                Instagram
-            </a>
-
-            <a href="https://www.tiktok.com/@prodcreview?_r=1&_t=ZS-96oqYmW9jsK" class="link-btn btn-tiktok" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                TikTok
-            </a>
-        </div>
-    </div>
-
-    <script>
-        const card = document.getElementById('tilt-card');
-        const container = document.body;
-
-        // Gerakan (Mobile & Desktop)
-        function handleMove(e) {
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            
-            const w = container.clientWidth;
-            const h = container.clientHeight;
-            
-            // Hitung posisi relatif (-0.5 hingga 0.5)
-            const yValue = (clientX / w - 0.5) * 2;
-            const xValue = (clientY / h - 0.5) * 2;
-            
-            // Rotasi derajat maksimum
-            const rotateX = xValue * 10; 
-            const rotateY = yValue * 15; 
-            
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        }
-
-        // Reset Posisi saat jari dilepas
-        function handleReset() {
-            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-        }
-
-        // Event Listeners
-        container.addEventListener('touchmove', handleMove);
-        container.addEventListener('touchend', handleReset);
-        container.addEventListener('mousemove', handleMove);
-        container.addEventListener('mouseleave', handleReset);
-    </script>
-
-</body>
-</html>
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919
