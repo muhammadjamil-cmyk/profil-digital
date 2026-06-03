@@ -10,7 +10,7 @@
     
     <style>
         :root {
-            --bg-color: #0c111d; /* Sedikit lebih gelap untuk kontras grain */
+            --bg-color: #080b12; /* Lebih gelap untuk kontras grafis cahaya */
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -32,22 +32,56 @@
             min-height: 100vh;
             padding: 20px;
             /* Efek Kedalaman Perspektif untuk 3D Tilt */
-            perspective: 1000px; 
+            perspective: 1200px; 
             position: relative;
             overflow: hidden;
         }
 
-        /* Lapisan Tekstur Film Grain (Overlay) */
+        /* ----------------------------------------------------------- */
+        /* [GRAFIS AESTHETIC] - Awan Cahaya Atmosfer Latar Belakang    */
+        /* ----------------------------------------------------------- */
+        .bg-graphic {
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 1; /* Paling belakang */
+        }
+
+        /* Awan Cahaya 1 (Kiri Atas - Teal/Biru) */
+        .bg-graphic::before {
+            content: "";
+            position: absolute;
+            width: 300px; height: 300px;
+            top: -100px; left: -100px;
+            background-color: #06b6d4; /* Teal */
+            filter: blur(120px); /* Membuatnya buram lembut */
+            opacity: 0.15; /* Sangat tipis */
+        }
+
+        /* Awan Cahaya 2 (Kanan Bawah - Ungu/Pink) */
+        .bg-graphic::after {
+            content: "";
+            position: absolute;
+            width: 350px; height: 350px;
+            bottom: -150px; right: -100px;
+            background-color: #8b5cf6; /* Ungu */
+            filter: blur(140px); /* Membuatnya buram lembut */
+            opacity: 0.18; /* Sangat tipis */
+        }
+
+        /* [GRAFIS AESTHETIC] - Lapisan Tekstur Film Grain Halus */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEV0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWR0ZWTr54g1AAAAGnRSTlMALv8A/v7/AP8A/wD+/v7+AP8A/gD+/v7+AP8A8mD2MwAAAClJREFUeNpjYGRkZGJmYWVjZ2dkYmZhpWJkYmZhpWJmYWVjZ2NkYmYAABMAAmf8WNoAAAAASUVORK5CYII=');
-            opacity: 0.04; /* Sangat tipis dan halus */
+            opacity: 0.03; /* Lebih halus */
             pointer-events: none;
-            z-index: 1;
+            z-index: 2; /* Di atas awan cahaya */
         }
 
+        /* Kartu Profil Utama */
         .profile-card {
             width: 100%;
             max-width: 380px;
@@ -57,7 +91,7 @@
             text-align: center;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            z-index: 2;
+            z-index: 3; /* Di atas grafis latar */
             position: relative;
             /* Penting untuk performa animasi miring */
             transform-style: preserve-3d;
@@ -170,6 +204,8 @@
 </head>
 <body>
 
+    <div class="bg-graphic"></div>
+
     <div class="profile-card" id="tilt-card">
         <div class="avatar">
             <span>MJ</span>
@@ -178,8 +214,8 @@
         <h1>Jamil</h1>
         <p class="headline">UI/UX Designer & Developer</p>
 
-        <iframe style="border-radius:16px; margin-bottom: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);" 
-                src="https://open.spotify.com/playlist/11Et5exhhN9awIOCPsrgef?si=_oB0KKuLTIK7WZlMQM6ctg" 
+        <iframe style="border-radius:16px; margin-bottom: 24px; box-shadow: 0 0 15px rgba(29, 185, 84, 0.15);" 
+                src="Https://open.spotify.com/playlist/11Et5exhhN9awIOCPsrgef?si=5_CFpYJ5TOSl-tSOYH0S6Q&pi=awVHPnWHTsqls" 
                 width="100%" height="152" frameBorder="0" allowfullscreen="" 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
         </iframe>
@@ -211,7 +247,7 @@
         const card = document.getElementById('tilt-card');
         const container = document.body;
 
-        // Logika Gerakan (Mouse & Touch)
+        // Gerakan (Mobile & Desktop)
         function handleMove(e) {
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -219,27 +255,25 @@
             const w = container.clientWidth;
             const h = container.clientHeight;
             
-            // Hitung posisi relatif jari/mouse terhadap tengah layar (-0.5 hingga 0.5)
+            // Hitung posisi relatif (-0.5 hingga 0.5)
             const yValue = (clientX / w - 0.5) * 2;
             const xValue = (clientY / h - 0.5) * 2;
             
-            // Rotasi maksimum (dalam derajat)
-            const rotateX = xValue * 10; // Miring ke atas/bawah
-            const rotateY = yValue * 15; // Miring ke kiri/kanan
+            // Rotasi derajat maksimum
+            const rotateX = xValue * 10; 
+            const rotateY = yValue * 15; 
             
             card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         }
 
-        // Kembalikan posisi kartu saat jari dilepas/mouse keluar
+        // Reset Posisi saat jari dilepas
         function handleReset() {
             card.style.transform = `rotateX(0deg) rotateY(0deg)`;
         }
 
-        // Event Listeners untuk Mobile (Touch)
+        // Event Listeners
         container.addEventListener('touchmove', handleMove);
         container.addEventListener('touchend', handleReset);
-        
-        // Event Listeners untuk Desktop (Mouse) - Opsional tapi bagus untuk testing
         container.addEventListener('mousemove', handleMove);
         container.addEventListener('mouseleave', handleReset);
     </script>
